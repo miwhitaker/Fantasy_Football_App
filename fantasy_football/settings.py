@@ -129,7 +129,7 @@ REGISTRATION_AUTO_LOGIN = True
 
 SITE_ID = 1
 
-LOGIN_REDIRECT_URL = ''
+LOGIN_REDIRECT_URL = '/fantasy'
 
 #Email settings
 EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"

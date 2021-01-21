@@ -4,8 +4,10 @@
     <meta charset = "UTF-8">
     <title>Welcome to Mike's Fantasy Football</title>
 </head>
-<body>
-    <h1>Ace of Base</h1>
+
+{% load static %}
+
+<body background = {% static 'base/img/football_field2.jpg'%}>
     {% block content %}
     {% endblock %}
 </body>
