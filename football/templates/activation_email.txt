@@ -1,9 +1,0 @@
-Greetings,
-
-You have signed up for an account at {{site.name}}. Please click on the link below to activate it:
-
-http://{{site.domain}}{$ 'registration_activate' activation_key $}
-
-The link is valid for {{expiration_days}} days. If you did not sign up for this account, feel free to ignore this e-mail.
-
--Mike's Fantasy Football
