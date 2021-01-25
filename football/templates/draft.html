@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block nav %}
+{% endblock %}
+
+{% block content %}
+<div class = "row page">
+    <div class = "col-md-3 col-sm-12">
+        <div class = "my-team">
+            <h2>My Team</h2>
+            <div class = "player-container">
+                <ul class = "player-list">
+                    <li>QB</li>
+                    <li>RB</li>
+                    <li>WR</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class = "col-md-6 cold-sm-12">
+        <div class = "player-info-container">
+            <div class = "player-info-block">
+                <h2>Player info block</h2>
+            </div>
+            <div class = "button-container">
+                <button type = "submit" class = "draft-button">DRAFT PLAYER!</button>
+            </div>
+            
+        </div>
+        <div class = "draft-list">
+            <ul>
+                <li>Player 1</li>
+                <li>Player 2</li>
+                <li>Player 3</li>
+                <li>Player 4</li>
+                <li>Player 5</li>
+            </ul>
+        </div>
+    </div>
+    <div class = "col-md-3 col-sm-12">
+        <div class = "draft-order">
+            <h2>Draft Order</h2>
+            <ul>
+                <li>User currently drafting</li>
+                <li>Next user</li>
+                <li>Next user</li>
+                <li>Next user</li>
+                <li>Next user</li>
+            </ul>
+        </div>
+    </div>
+</div>
+{% endblock %}

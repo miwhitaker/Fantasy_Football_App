@@ -1,0 +1,41 @@
+/***Draft page styles***/
+.page {
+    margin-top: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 5px;
+    text-align: center;
+}
+
+.my-team {
+    border: 3px solid black;
+}
+
+.player-conainer {
+    border: 3px solid black;
+}
+
+.player-info-container {
+    border: 3px solid black;
+}
+
+.draft-order {
+    border: 3px solid black;
+}
+
+.player-info-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.draft-list {
+    border: 3px solid black;
+}
+
+/***Button styles**/
+.draft-button {
+    background-color:blue;
+    color: whitesmoke;
+    margin-top: 3px;
+    margin-right: 3px;
+}
