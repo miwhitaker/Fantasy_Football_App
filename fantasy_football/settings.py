@@ -40,8 +40,6 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'bootstrap4',
-    'bootstrap_themes',
     'football',
 ]
 
@@ -131,7 +129,8 @@ REGISTRATION_AUTO_LOGIN = True
 
 SITE_ID = 1
 
-LOGIN_REDIRECT_URL = '/fantasy'
+SIMPLE_BACKEND_REDIRECT_URL = '/fantasy'
+#LOGIN_REDIRECT_URL = '/fantasy'
 
 #Email settings
 EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"

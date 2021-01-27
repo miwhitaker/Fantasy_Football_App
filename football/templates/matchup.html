@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block content %}
+
+<div class = "row">
+    <div class = "col-md-8 col-sm-12">
+        <div class = "matchup-container">
+            <div class = "match-team1">
+                <div class = "matchup-header1">
+                    <span>My team</span>
+                    <span>Score</span>
+                </div>
+                <div>
+                    Grid of individual player stats
+                </div>
+            </div>
+            <div class = "match-team2">
+                <div class = "matchup-header2">
+                    <span>Other Team</span>
+                    <span>Score</span>
+                </div>
+                <div>
+                    Grid of individual player stats
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class = "col-md-4 col-sm-12">
+        Standings
+    </div>
+</div>
+{% endblock %}

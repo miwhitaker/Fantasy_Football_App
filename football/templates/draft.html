@@ -15,6 +15,7 @@
                     <li>QB</li>
                     <li>RB</li>
                     <li>WR</li>
+                    <li>Bench</li>
                 </ul>
             </div>
         </div>
@@ -22,20 +23,36 @@
     <div class = "col-md-6 cold-sm-12">
         <div class = "player-info-container">
             <div class = "player-info-block">
-                <h2>Player info block</h2>
+                <h2>Lamar Jackson</h2>
+                <div>Position: QB</div>
+                <div>Team: Baltimore Ravens</div>
+            </div>
+            <div>
+                <div>2018 Statistics</div>
+                <div>Passing Yards: number</div>
+                <div>Passing TD: number</div>
+                <div>Interceptions: number</div>
             </div>
             <div class = "button-container">
                 <button type = "submit" class = "draft-button">DRAFT PLAYER!</button>
             </div>
-            
         </div>
-        <div class = "draft-list">
+        <div class = "draft-list-container">
+            <div class = "draft-header">
+                <div class = "name-list">Player Name</div>
+                <div class = "team-list">Team</div>
+                <div class = "pos-list">Position</div>
+                <div class = "points-list">Points</div>
+            </div>
             <ul>
-                <li>Player 1</li>
-                <li>Player 2</li>
-                <li>Player 3</li>
-                <li>Player 4</li>
-                <li>Player 5</li>
+                {% for player in players %}
+                    <li>
+                        <span class = "list-name">{{player.name}}</span>
+                        <span class = "list-team">{{player.team}}</span>
+                        <span class = "list-pos">{{player.position}}</span>
+                        <span class = "list-pts">{{player.points}}</span>
+                    </li>
+                {% endfor %}
             </ul>
         </div>
     </div>

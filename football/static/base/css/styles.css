@@ -4,7 +4,6 @@
     margin-left: auto;
     margin-right: auto;
     padding: 5px;
-    text-align: center;
 }
 
 .my-team {
@@ -28,14 +27,30 @@
     justify-content: space-between;
 }
 
-.draft-list {
+.draft-list-container {
     border: 3px solid black;
 }
 
-/***Button styles**/
+.draft-header {
+    display: flex;
+    justify-content: space-between;
+    font-weight: bold;
+}
+
+/***Matchup Page styles***/
+.matchup-container {
+    display: flex;
+}
+
+/***Button styles***/
 .draft-button {
     background-color:blue;
     color: whitesmoke;
     margin-top: 3px;
     margin-right: 3px;
+}
+
+/***All page styles***/
+ul {
+    list-style-type: none;
 }

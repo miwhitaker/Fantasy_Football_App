@@ -1,11 +1,10 @@
 import csv
-from football.models import Players
+from football.models import Week5
 from django.core.management.base import BaseCommand, CommandError
 
 class Command(BaseCommand):
-
     def handle(self, *args, **options):
-        with open('C:/Users/ollup/Desktop/Class stuff/NFL Stats/yearly/2018.csv', mode='r') as csv_file:
+        with open('C:/Users/ollup/Desktop/Class stuff/NFL Stats/weekly/2019/week5.csv', mode='r') as csv_file:
             csv_reader = csv.DictReader(csv_file)
             print(csv_reader)
             line_count = 0
@@ -13,16 +12,17 @@ class Command(BaseCommand):
                 if line_count == 0:
                     f'Column names are {", ".join(row)}'
                 f'\t{row}'
-                info = Players(
+                info = Week5(
                     name = row['Player'], 
                     team = row['Tm'], 
                     position = row['Pos'], 
-                    pass_yds = int(float(row['PassingYds'])), 
+                    pass_yds = float(row['PassingYds']), 
                     pass_tds = int(float(row['PassingTD'])), 
                     interceptions = int(float(row['Int'])), 
                     fumbles = int(float(row['FumblesLost'])), 
-                    rush_yds = int(float(row['RushingYds'])), 
+                    rush_yds = float(row['RushingYds']), 
                     rush_tds = int(float(row['RushingTD'])), 
-                    rec_yds = int(float(row['ReceivingYds'])), 
-                    rec_tds = int(float(row['ReceivingTD'])))
+                    rec_yds = float(row['ReceivingYds']), 
+                    rec_tds = int(float(row['ReceivingTD'])),
+                    points = float(row['StandardFantasyPoints']))
                 info.save()

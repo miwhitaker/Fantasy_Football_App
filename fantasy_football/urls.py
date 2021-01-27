@@ -20,5 +20,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('football.urls')),
     path('fantasy/', include('football.urls')),
-    path('accounts/', include('registration.backends.default.urls')),
+    path('accounts/', include('registration.backends.simple.urls')),
 ]
