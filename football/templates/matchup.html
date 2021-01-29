@@ -2,33 +2,92 @@
 
 {% load static %}
 
+{% block nav %}
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="#">My Team</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Matchups<span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Standings</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Add Players</a>
+                </li>
+            </ul>
+{% endblock %}
+
 {% block content %}
 
 <div class = "row">
     <div class = "col-md-8 col-sm-12">
         <div class = "matchup-container">
-            <div class = "match-team1">
-                <div class = "matchup-header1">
-                    <span>My team</span>
-                    <span>Score</span>
+            <div class = "team-header">
+                <div class = "score-container">
+                    <h2>My Team</h2>
+                    <h2>Score</h2>
                 </div>
-                <div>
-                    Grid of individual player stats
-                </div>
-            </div>
-            <div class = "match-team2">
-                <div class = "matchup-header2">
-                    <span>Other Team</span>
-                    <span>Score</span>
-                </div>
-                <div>
-                    Grid of individual player stats
+                <div class = "score-container">
+                    <h2>Other Team</h2>
+                    <h2>Score</h2>
                 </div>
             </div>
+            <table>
+                <tr>
+                    <th>Stats</th>
+                    <th>Player</th>
+                    <th>Fantasy Points</th>
+                    <th></th>
+                    <th>Fantasy Points</th>
+                    <th>Player</th>
+                    <th>Stats</th>
+                </tr>
+                <!--loop over teams in the league and fill in variables-->
+                <tr>
+                    <td>p1stats-user</td>
+                    <td>p1player-user</td>
+                    <td>p1pts-user</td>
+                    <td>QB</td>
+                    <td>p1pts-opp</td>
+                    <td>p1player-opp</td>
+                    <td>p1stats-opp</td>
+                </tr>
+                <tr>
+                    <td>p2stats-user</td>
+                    <td>p2player-user</td>
+                    <td>p2pts-user</td>
+                    <td>QB</td>
+                    <td>p2pts-opp</td>
+                    <td>p2player-opp</td>
+                    <td>p2stats-opp</td>
+                </tr>
+                <tr>
+                    <td>p3stats-user</td>
+                    <td>p3player-user</td>
+                    <td>p3pts-user</td>
+                    <td>QB</td>
+                    <td>p3pts-opp</td>
+                    <td>p3player-opp</td>
+                    <td>p3stats-opp</td>
+                </tr>
         </div>
     </div>
     <div class = "col-md-4 col-sm-12">
-        Standings
+        <table>
+            <tr>
+                <th>Rank</th>
+                <th>Team</th>
+                <th>Wins</th>
+                <th>Losses</th>
+                <th>Streak</th>
+            </tr>
+            <!--{% loop over all teams in league, sorted by highest number of wins %}
+                <tr><td>{{}}</td></tr>
+            {% endfor %} -->
+        </table>
     </div>
 </div>
+
 {% endblock %}

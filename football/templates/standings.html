@@ -2,8 +2,30 @@
 
 {% load static %}
 
+{% block nav %}
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="#">My Team</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Matchups</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Standings<span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Add Players</a>
+                </li>
+            </ul>
+{% endblock %}
+
 {% block content %}
 
-<div></div>
+<div>
+    All matchups as a table
+</div>
+<div>
+    League Standings
+</div>
 
 {% endblock %}
