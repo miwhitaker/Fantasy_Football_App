@@ -3,26 +3,24 @@
 {% load static %}
 
 {% block nav %}
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="#">My Team</a>
-                </li>
-                <li class="nav-item active">
-                    <a class="nav-link" href="#">Matchups<span class="sr-only">(current)</span></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Standings</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Add Players</a>
-                </li>
-            </ul>
+    <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+            <a class="nav-link" href="#">My Team</a>
+        </li>
+        <li class="nav-item active">
+            <a class="nav-link" href="#">Matchups<span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#">Standings</a>
+        </li>
+    </ul>
 {% endblock %}
 
 {% block content %}
 
+
 <div class = "row">
-    <div class = "col-md-8 col-sm-12">
+    <div class = "col-md-12">
         <div class = "matchup-container">
             <div class = "team-header">
                 <div class = "score-container">
@@ -74,20 +72,11 @@
                 </tr>
         </div>
     </div>
-    <div class = "col-md-4 col-sm-12">
-        <table>
-            <tr>
-                <th>Rank</th>
-                <th>Team</th>
-                <th>Wins</th>
-                <th>Losses</th>
-                <th>Streak</th>
-            </tr>
-            <!--{% loop over all teams in league, sorted by highest number of wins %}
-                <tr><td>{{}}</td></tr>
-            {% endfor %} -->
-        </table>
-    </div>
+    
 </div>
-
+<form>
+    <button type = "submit" method = "POST">Advance Week</button>
+    {% csrf_token %}
+    {{ form.as_p }}
+</form>
 {% endblock %}

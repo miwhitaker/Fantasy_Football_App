@@ -16,93 +16,34 @@
                 <tr>
                     <td>QB</td>
                     <td>
-                        {% if players.rostered_by == session.user.username%}
-                            {% if players.position == "QB"%}
-                                {{players.name}}
-                            {% else %}
-                                ---
-                            {% endif %}
-                        {% else %}
-                        ---
-                        {% endif %}
+                        {{my_qb}}
                     </td>
                     <td>
-                        {% if players.rostered_by == session.user.username%}
-                            {% if players.position == "QB"%}
-                                {{players.team}}
-                            {% else %}
-                                ---
-                            {% endif %}
-                        {% else %}
-                        ---
-                        {% endif %}
+                        {{my_qb.team}}
                     </td>
                 </tr>
                 <tr>
                     <td>RB</td>
                     <td>
-                        {% if players.rostered_by == session.user.username%}
-                            {% if players.position == "RB"%}
-                                {{players.name}}
-                            {% else %}
-                                ---
-                            {% endif %}
-                        {% else %}
-                        ---
-                        {% endif %}
+                        {{my_rb}}
                     </td>
                     <td>
-                        {% if players.rostered_by == session.user.username%}
-                            {% if players.position == "RB"%}
-                                {{players.team}}
-                            {% else %}
-                                ---
-                            {% endif %}
-                        {% else %}
-                        ---
-                        {% endif %}
+                        {{my_rb.team}}
                     </td>
                 </tr>
                 <tr>
                     <td>WR</td>
                     <td>
-                        {% if players.rostered_by == session.user.username%}
-                            {% if players.position == "WR"%}
-                                {{players.name}}
-                            {% else %}
-                                ---
-                            {% endif %}
-                        {% else %}
-                        ---
-                        {% endif %}
+                        {{my_wr}}
                     </td>
                     <td>
-                        {% if players.rostered_by == session.user.username%}
-                            {% if players.position == "WR"%}
-                                {{players.team}}
-                            {% else %}
-                                ---
-                            {% endif %}
-                        {% else %}
-                        ---
-                        {% endif %}
+                        {{my_wr.team}}
                     </td>
                 </tr>
                 <tr>
                     <td>Bench</td>
                     <td>
-                        {% if players.rostered_by == session.user.username%}
-                            {{players.name}}
-                        {% else %}
                         ---
-                        {% endif %}
-                    </td>
-                    <td>
-                        {% if players.rostered_by == session.user.username%}
-                            {{players.team}}
-                        {% else %}
-                        ---
-                        {% endif %}
                     </td>
                 </tr>
             </table>
@@ -111,20 +52,21 @@
     <div class = "col-md-6 cold-sm-12">
         <div class = "player-info-container">
             <div class = "player-info-block">
-                <h2>Lamar Jackson</h2>
-                <div>Position: QB</div>
-                <div>Team: Baltimore Ravens</div>
+                <h2 id = "currPlayer"></h2>
+                <div id = "playerPosition">---</div>
+                <div id = "playerTeam">---</div>
             </div>
             <div>
                 <div>2018 Statistics</div>
-                <div>Passing Yards: {{players.pass_yds}}</div>
-                <div>Passing TD: {{players.pass_tds}}</div>
-                <div>Interceptions: {{players.interceptions}}</div>
+                <div id = "yards"></div>
+                <div id = "td"></div>
+                <div id = "turnovers"></div>
             </div>
             <div class = "button-container">
-                <form action = {% url 'draft' %} method = "POST">
+                <form method = "POST">
                     <button type = "submit" class = "draft-button">DRAFT PLAYER!</button>
-                    {{ csrf.token }}
+                    {% csrf_token %}
+                    {{ form.as_p }}
                 </form>
             </div>
         </div>
@@ -138,10 +80,10 @@
                 </tr>
                 {% for player in players %}
                 <tr>
-                    <td class = "list-name">{{player.name}}</td>
+                    <td class = "list-name"><a href ='#' onclick = "playerClick('{{player}}')" >{{player.name}}</a></td>
                     <td class = "list-team">{{player.team}}</td>
                     <td class = "list-pos">{{player.position}}</td>
-                    <td class = "list-pts">{{player.points}}</td>
+                    <td class = "list-pts">{{player.points|floatformat:2}}</td>
                 </tr>
                 {% endfor %}
             </table>
@@ -150,13 +92,11 @@
     <div class = "col-md-3 col-sm-12">
         <div class = "draft-order">
             <h2>Draft Order</h2>
-            <ul>
-                <li>User currently drafting</li>
-                <li>Next user</li>
-                <li>Next user</li>
-                <li>Next user</li>
-                <li>Next user</li>
-            </ul>
+                <ol id = "draftOrder">
+                {% for user in draft_list %}
+                    <li>{{user}}</li>
+                {% endfor %}
+                </ol>
         </div>
     </div>
 </div>

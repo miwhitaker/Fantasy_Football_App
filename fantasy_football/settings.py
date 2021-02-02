@@ -51,6 +51,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'fantasy_football.middleware.OnlineNowMiddleware',
 ]
 
 ROOT_URLCONF = 'fantasy_football.urls'
@@ -129,8 +130,8 @@ REGISTRATION_AUTO_LOGIN = True
 
 SITE_ID = 1
 
-SIMPLE_BACKEND_REDIRECT_URL = '/fantasy'
-#LOGIN_REDIRECT_URL = '/fantasy'
+SIMPLE_BACKEND_REDIRECT_URL = '/lobby'
+#LOGIN_REDIRECT_URL = '/lobby'
 
 #Email settings
 EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"

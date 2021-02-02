@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block nav %}
+{% endblock %}
+
+{% block content %}
+<ol>
+<!--   {% for user in request.online_now %}
+        <li>{{user}}</li>
+    {% endfor %} -->
+    <li>user1</li>
+    <li>user2</li>
+    <li>user3</li>
+</ol>
+
+<div>
+    <form method = "POST">
+        <button type = "submit" class = "enter-draft">START DRAFT!</button>
+        {% csrf_token %}
+        {{ form.as_p }}
+    </form>
+</div>
+{% endblock %}

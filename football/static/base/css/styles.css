@@ -6,6 +6,10 @@
     padding: 5px;
 }
 
+#header {
+    text-align: center;
+}
+
 .my-team {
     border: 3px solid black;
     width: 100%;

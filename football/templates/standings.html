@@ -13,19 +13,34 @@
                 <li class="nav-item active">
                     <a class="nav-link" href="#">Standings<span class="sr-only">(current)</span></a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Add Players</a>
-                </li>
             </ul>
 {% endblock %}
 
 {% block content %}
 
 <div>
-    All matchups as a table
+    <table>
+        <tr>
+            <th>Team-1</th>
+            <th>Points-1</th>
+            <th>Points-2</th>
+            <th>Team-2</th>
+        </tr>
+        <!--Display matchups for all teams on each row: <tr><td>user1</td><td>user2></tr>-->
 </div>
-<div>
-    League Standings
-</div>
+<div class = "col-md-12 col-sm-12">
+        <table>
+            <tr>
+                <th>Rank</th>
+                <th>Team</th>
+                <th>Wins</th>
+                <th>Losses</th>
+                <th>Streak</th>
+            </tr>
+            <!--{% loop over all teams in league, sorted by highest number of wins %}
+                <tr><td>{{}}</td></tr>
+            {% endfor %} -->
+        </table>
+    </div>
 
 {% endblock %}

@@ -30,5 +30,7 @@ team_names = {
     'SFO': 'San Francisco 49ers',
     'TAM': 'Tampa Bay Buccaneers',
     'TEN': 'Tennessee Titans',
-    'WAS': 'Washington Redskins'
+    'WAS': 'Washington Redskins',
+    '2TM': 'Jacksonville Cornholes',
+    '3TM': 'Not a Team'
 }
