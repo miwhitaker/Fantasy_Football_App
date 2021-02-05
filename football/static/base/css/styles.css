@@ -36,6 +36,11 @@
     border: 3px solid black;
 }
 
+table {
+    border: 1px solid black;
+    width: 100%;
+}
+
 .draft-header {
     display: flex;
     justify-content: space-between;
@@ -43,9 +48,16 @@
 }
 
 /***Matchup Page styles***/
-.matchup-container {
-    display: flex;
+
+table, tr, td {
+    color: green;
+    border: 1px solid black;
 }
+
+#score-table {
+    
+    border: 1px solid black;
+  }
 
 /***Button styles***/
 .draft-button {

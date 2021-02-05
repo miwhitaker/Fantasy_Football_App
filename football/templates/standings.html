@@ -5,13 +5,10 @@
 {% block nav %}
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="#">My Team</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Matchups</a>
+                    <a class="nav-link" href="{%url 'matchup'%}">Matchup</a>
                 </li>
                 <li class="nav-item active">
-                    <a class="nav-link" href="#">Standings<span class="sr-only">(current)</span></a>
+                    <a class="nav-link" href="{%url 'standings'%}">Standings<span class="sr-only">(current)</span></a>
                 </li>
             </ul>
 {% endblock %}
@@ -21,26 +18,40 @@
 <div>
     <table>
         <tr>
-            <th>Team-1</th>
-            <th>Points-1</th>
-            <th>Points-2</th>
-            <th>Team-2</th>
+            <th>Team</th>
+            <th>Points</th>
+            <th>Points</th>
+            <th>Team</th>
         </tr>
-        <!--Display matchups for all teams on each row: <tr><td>user1</td><td>user2></tr>-->
+        <tr>
+            <td>{{all_matchups.t1}}'s Team</td>
+            <td>pts1</td>
+            <td>pts2</td>
+            <td>{{all_matchups.t2}}'s Team</td>
+        </tr>
+        <tr>
+            <td>{{all_matchups.t3}}'s Team</td>
+            <td>pts1</td>
+            <td>pts2</td>
+            <td>{{all_matchups.t4}}'s Team</td>
+        </tr>
+        <tr>
+            <td>{{all_matchups.t5}}'s Team</td>
+            <td>pts1</td>
+            <td>pts2</td>
+            <td>{{all_matchups.t6}}'s Team</td>
+        </tr>
 </div>
 <div class = "col-md-12 col-sm-12">
-        <table>
-            <tr>
-                <th>Rank</th>
-                <th>Team</th>
-                <th>Wins</th>
-                <th>Losses</th>
-                <th>Streak</th>
-            </tr>
-            <!--{% loop over all teams in league, sorted by highest number of wins %}
-                <tr><td>{{}}</td></tr>
-            {% endfor %} -->
-        </table>
-    </div>
+    <table>
+        <tr>
+            <th>Rank</th>
+            <th>Team</th>
+            <th>Wins</th>
+            <th>Losses</th>
+            <th>Streak</th>
+        </tr>
+    </table>
+</div>
 
 {% endblock %}

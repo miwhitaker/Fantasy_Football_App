@@ -1,18 +1,14 @@
 import csv
-from football.models import Week4
+from football.models import Week
 from django.core.management.base import BaseCommand, CommandError
 
 class Command(BaseCommand):
     def handle(self, *args, **options):
-        with open('C:/Users/ollup/Desktop/Class stuff/NFL Stats/weekly/2019/week4.csv', mode='r') as csv_file:
+        with open('C:/Users/ollup/Desktop/Class stuff/NFL Stats/weekly/2019/week5.csv', mode='r') as csv_file:
             csv_reader = csv.DictReader(csv_file)
-            print(csv_reader)
-            line_count = 0
             for row in csv_reader:
-                if line_count == 0:
-                    f'Column names are {", ".join(row)}'
-                f'\t{row}'
-                info = Week4(
+                info = Week(
+                    week = 5,
                     name = row['Player'], 
                     team = row['Tm'], 
                     position = row['Pos'], 
@@ -26,4 +22,4 @@ class Command(BaseCommand):
                     rec_tds = int(float(row['ReceivingTD'])),
                     points = float(row['StandardFantasyPoints']))
                 info.save()
-                print('working')
+                print('Added player: ' + row['Player'])

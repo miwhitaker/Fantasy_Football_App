@@ -16,7 +16,7 @@
                 <tr>
                     <td>QB</td>
                     <td>
-                        {{my_qb}}
+                        {{my_qb.name}}
                     </td>
                     <td>
                         {{my_qb.team}}
@@ -25,7 +25,7 @@
                 <tr>
                     <td>RB</td>
                     <td>
-                        {{my_rb}}
+                        {{my_rb.name}}
                     </td>
                     <td>
                         {{my_rb.team}}
@@ -34,7 +34,7 @@
                 <tr>
                     <td>WR</td>
                     <td>
-                        {{my_wr}}
+                        {{my_wr.name}}
                     </td>
                     <td>
                         {{my_wr.team}}
@@ -52,7 +52,7 @@
     <div class = "col-md-6 cold-sm-12">
         <div class = "player-info-container">
             <div class = "player-info-block">
-                <h2 id = "currPlayer"></h2>
+                <h2 id = "currPlayer">---</h2>
                 <div id = "playerPosition">---</div>
                 <div id = "playerTeam">---</div>
             </div>
@@ -63,7 +63,7 @@
                 <div id = "turnovers"></div>
             </div>
             <div class = "button-container">
-                <form method = "POST">
+                <form method = "POST" >
                     <button type = "submit" class = "draft-button">DRAFT PLAYER!</button>
                     {% csrf_token %}
                     {{ form.as_p }}
@@ -79,12 +79,14 @@
                     <th>2018 Fantasy Points</th>
                 </tr>
                 {% for player in players %}
-                <tr>
-                    <td class = "list-name"><a href ='#' onclick = "playerClick('{{player}}')" >{{player.name}}</a></td>
-                    <td class = "list-team">{{player.team}}</td>
-                    <td class = "list-pos">{{player.position}}</td>
-                    <td class = "list-pts">{{player.points|floatformat:2}}</td>
-                </tr>
+                    {% if player.rostered_by == '0' %}
+                        <tr>
+                            <td><a href ='#' onclick = "playerClick('{{player}}')" >{{player.name}}</a></td>
+                            <td>{{player.team}}</td>
+                            <td>{{player.position}}</td>
+                            <td>{{player.points|floatformat:2}}</td>
+                        </tr>
+                    {% endif %}
                 {% endfor %}
             </table>
         </div>

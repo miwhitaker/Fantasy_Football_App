@@ -51,7 +51,6 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'fantasy_football.middleware.OnlineNowMiddleware',
 ]
 
 ROOT_URLCONF = 'fantasy_football.urls'

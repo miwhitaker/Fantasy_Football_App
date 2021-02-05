@@ -26,8 +26,8 @@ function playerClick(playerStr) {
         document.getElementById('turnovers').innerHTML = "n/a";
     }
 
-    const draftList = document.getElementById('draftOrder');
-    draftList.removeChild(draftlist.childNodes[0]);
+    document.getElementById('draftOrder').removeChild(draftlist.childNodes[0]);
+    ;
     return false
 }
 

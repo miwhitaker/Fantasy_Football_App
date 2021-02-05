@@ -4,79 +4,166 @@
 
 {% block nav %}
     <ul class="navbar-nav mr-auto">
-        <li class="nav-item">
-            <a class="nav-link" href="#">My Team</a>
-        </li>
         <li class="nav-item active">
-            <a class="nav-link" href="#">Matchups<span class="sr-only">(current)</span></a>
+            <a class="nav-link" href="{%url 'matchup'%}">Matchup<span class="sr-only">(current)</span></a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="#">Standings</a>
+            <a class="nav-link" href="{%url 'standings'%}">Standings</a>
         </li>
     </ul>
 {% endblock %}
 
 {% block content %}
-
-
-<div class = "row">
-    <div class = "col-md-12">
-        <div class = "matchup-container">
-            <div class = "team-header">
-                <div class = "score-container">
-                    <h2>My Team</h2>
-                    <h2>Score</h2>
-                </div>
-                <div class = "score-container">
-                    <h2>Other Team</h2>
-                    <h2>Score</h2>
-                </div>
-            </div>
-            <table>
-                <tr>
-                    <th>Stats</th>
-                    <th>Player</th>
-                    <th>Fantasy Points</th>
-                    <th></th>
-                    <th>Fantasy Points</th>
-                    <th>Player</th>
-                    <th>Stats</th>
-                </tr>
-                <!--loop over teams in the league and fill in variables-->
-                <tr>
-                    <td>p1stats-user</td>
-                    <td>p1player-user</td>
-                    <td>p1pts-user</td>
-                    <td>QB</td>
-                    <td>p1pts-opp</td>
-                    <td>p1player-opp</td>
-                    <td>p1stats-opp</td>
-                </tr>
-                <tr>
-                    <td>p2stats-user</td>
-                    <td>p2player-user</td>
-                    <td>p2pts-user</td>
-                    <td>QB</td>
-                    <td>p2pts-opp</td>
-                    <td>p2player-opp</td>
-                    <td>p2stats-opp</td>
-                </tr>
-                <tr>
-                    <td>p3stats-user</td>
-                    <td>p3player-user</td>
-                    <td>p3pts-user</td>
-                    <td>QB</td>
-                    <td>p3pts-opp</td>
-                    <td>p3player-opp</td>
-                    <td>p3stats-opp</td>
-                </tr>
-        </div>
-    </div>
-    
+<div class = "matchup-container">
+    <table id = "score-table" style = "border: 1px solid black">
+        <tr>
+            <th>{{all_matchups.t1}}'s Team</th>
+            <th>Score</th>
+            <th>Pos</th>
+            <th>{{all_matchups.t2}}'s Team</th>
+            <th>Score</th>
+        </tr>
+        <tr>
+            <td>{{user_stats.qb.name}}</td>
+            <td>{{user_stats.qb.points}}</td>
+            <td>QB</td>
+            <td>{{t2_stats.qb.name}}</td>
+            <td>{{t2_stats.qb.points}}</td>
+        </tr>
+        <tr>
+            <td>{{user_stats.rb.name}}</td>
+            <td>{{user_stats.rb.points}}</td>
+            <td>RB</td>
+            <td>{{t2_stats.rb.name}}</td>
+            <td>{{t2_stats.rb.points}}</td>
+        </tr>
+        <tr>
+            <td>{{user_stats.wr.name}}</td>
+            <td>{{user_stats.wr.points}}</td>
+            <td>WR</td>
+            <td>{{t2_stats.wr.name}}</td>
+            <td>{{t2_stats.wr.points}}</td>
+        </tr>
+    </table>
 </div>
-<form>
-    <button type = "submit" method = "POST">Advance Week</button>
-    {% csrf_token %}
-    {{ form.as_p }}
-</form>
+<div class = "my-team-container">
+    <h2>My Team</h2>
+    <table>
+        <tr>
+            <th>Position</th>
+            <th>Player Name</th>
+            <th>Fantasy Points</th>
+            <th>Passing Yards</th>
+            <th>Passing TDs</th>
+            <th>Rushing Yards</th>
+            <th>Rushing TDs</th>
+            <th>Receiving Yards</th>
+            <th>Receiving TDs</th>
+            <th>Interceptions</th>
+            <th>Fumbles Lost</th>
+        </tr>
+        <tr>
+            <td>{{user_stats.qb.position}}</td>
+            <td>{{user_stats.qb.name}}</td>
+            <td>{{user_stats.qb.points}}</td>
+            <td>{{user_stats.qb.pass_yds}}</td>
+            <td>{{user_stats.qb.pass_tds}}</td>
+            <td>{{user_stats.qb.rush_yds}}</td>
+            <td>{{user_stats.qb.rush_tds}}</td>
+            <td>{{user_stats.qb.rec_yds}}</td>
+            <td>{{user_stats.qb.rec_tds}}</td>
+            <td>{{user_stats.qb.interceptions}}</td>
+            <td>{{user_stats.qb.fumbles}}</td>
+        </tr>
+        <tr>
+            <td>{{user_stats.rb.position}}</td>
+            <td>{{user_stats.rb.name}}</td>
+            <td>{{user_stats.rb.points}}</td>
+            <td>{{user_stats.rb.pass_yds}}</td>
+            <td>{{user_stats.rb.pass_tds}}</td>
+            <td>{{user_stats.rb.rush_yds}}</td>
+            <td>{{user_stats.rb.rush_tds}}</td>
+            <td>{{user_stats.rb.rec_yds}}</td>
+            <td>{{user_stats.rb.rec_tds}}</td>
+            <td>{{user_stats.rb.interceptions}}</td>
+            <td>{{user_stats.rb.fumbles}}</td>
+        </tr>
+        <tr>
+            <td>{{user_stats.wr.position}}</td>
+            <td>{{user_stats.wr.name}}</td>
+            <td>{{user_stats.wr.points}}</td>
+            <td>{{user_stats.wr.pass_yds}}</td>
+            <td>{{user_stats.wr.pass_tds}}</td>
+            <td>{{user_stats.wr.rush_yds}}</td>
+            <td>{{user_stats.wr.rush_tds}}</td>
+            <td>{{user_stats.wr.rec_yds}}</td>
+            <td>{{user_stats.wr.rec_tds}}</td>
+            <td>{{user_stats.wr.interceptions}}</td>
+            <td>{{user_stats.wr.fumbles}}</td>
+        </tr>
+    </table>
+<div>
+<div class = "my-team-container">
+    <h2>Opposing Team</h2>
+    <table>
+        <tr>
+            <th>Position</th>
+            <th>Player</th>
+            <th>Fantasy Points</th>
+            <th>Passing Yards</th>
+            <th>Passing TDs</th>
+            <th>Rushing Yards</th>
+            <th>Rushing TDs</th>
+            <th>Receiving Yards</th>
+            <th>Receiving TDs</th>
+            <th>Interceptions</th>
+            <th>Fumbles Lost</th>
+        </tr>
+        <tr>
+            <td>{{t2_stats.qb.position}}</td>
+            <td>{{t2_stats.qb.name}}</td>
+            <td>{{t2_stats.qb.points}}</td>
+            <td>{{t2_stats.qb.pass_yds}}</td>
+            <td>{{t2_stats.qb.pass_tds}}</td>
+            <td>{{t2_stats.qb.rush_yds}}</td>
+            <td>{{t2_stats.qb.rush_tds}}</td>
+            <td>{{t2_stats.qb.rec_yds}}</td>
+            <td>{{t2_stats.qb.rec_tds}}</td>
+            <td>{{t2_stats.qb.interceptions}}</td>
+            <td>{{t2_stats.qb.fumbles}}</td>
+        </tr>
+        <tr>
+            <td>{{t2_stats.rb.position}}</td>
+            <td>{{t2_stats.rb.name}}</td>
+            <td>{{t2_stats.rb.points}}</td>
+            <td>{{t2_stats.rb.pass_yds}}</td>
+            <td>{{t2_stats.rb.pass_tds}}</td>
+            <td>{{t2_stats.rb.rush_yds}}</td>
+            <td>{{t2_stats.rb.rush_tds}}</td>
+            <td>{{t2_stats.rb.rec_yds}}</td>
+            <td>{{t2_stats.rb.rec_tds}}</td>
+            <td>{{t2_stats.rb.interceptions}}</td>
+            <td>{{t2_stats.rb.fumbles}}</td>
+        </tr>
+        <tr>
+            <td>{{t2_stats.wr.position}}</td>
+            <td>{{t2_stats.wr.name}}</td>
+            <td>{{t2_stats.wr.points}}</td>
+            <td>{{t2_stats.wr.pass_yds}}</td>
+            <td>{{t2_stats.wr.pass_tds}}</td>
+            <td>{{t2_stats.wr.rush_yds}}</td>
+            <td>{{t2_stats.wr.rush_tds}}</td>
+            <td>{{t2_stats.wr.rec_yds}}</td>
+            <td>{{t2_stats.wr.rec_tds}}</td>
+            <td>{{t2_stats.wr.interceptions}}</td>
+            <td>{{t2_stats.wr.fumbles}}</td>
+        </tr>
+    </table>
+<div>
+    <form>
+        <button type = "submit" method = "POST">Advance Week</button>
+        {% csrf_token %}
+        {{ form.as_p }}
+    </form>
+</div>
 {% endblock %}
