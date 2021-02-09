@@ -1,4 +1,4 @@
-from football.models import Players
+from football.models import Players, Record
 from django.core.management.base import BaseCommand, CommandError
 
 class Command(BaseCommand):
@@ -8,3 +8,7 @@ class Command(BaseCommand):
         for player in all_players:
             player.rostered_by = '0'
             player.save()
+
+        Record.objects.all().delete()
+        
+

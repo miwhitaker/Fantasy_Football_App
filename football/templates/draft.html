@@ -101,5 +101,14 @@
                 </ol>
         </div>
     </div>
+    <div class = "button-container">
+        <form method = "POST"  action = {% url 'standings' %}>
+            <button type = "submit" class = "finalize-button">Finalize Draft</button>
+            {% csrf_token %}
+            {{ form.as_p }}
+        </form>
+    </div>
 </div>
+
+
 {% endblock %}

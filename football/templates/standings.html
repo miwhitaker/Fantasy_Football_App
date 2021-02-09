@@ -25,33 +25,49 @@
         </tr>
         <tr>
             <td>{{all_matchups.t1}}'s Team</td>
-            <td>pts1</td>
-            <td>pts2</td>
+            <td>{{total.t1}}</td>
+            <td>{{total.t2}}</td>
             <td>{{all_matchups.t2}}'s Team</td>
         </tr>
         <tr>
             <td>{{all_matchups.t3}}'s Team</td>
-            <td>pts1</td>
-            <td>pts2</td>
+            <td>{{total.t3}}</td>
+            <td>{{total.t4}}</td>
             <td>{{all_matchups.t4}}'s Team</td>
         </tr>
         <tr>
             <td>{{all_matchups.t5}}'s Team</td>
-            <td>pts1</td>
-            <td>pts2</td>
+            <td>{{total.t5}}</td>
+            <td>{{total.t6}}</td>
             <td>{{all_matchups.t6}}'s Team</td>
         </tr>
 </div>
 <div class = "col-md-12 col-sm-12">
     <table>
         <tr>
-            <th>Rank</th>
             <th>Team</th>
             <th>Wins</th>
             <th>Losses</th>
-            <th>Streak</th>
+            <th>Ties</th>
+            <th>Total Points</th>
         </tr>
+        {% for team in all_records %}
+            <tr>
+                <td>{{team.username}}'s Team</td>
+                <td>{{team.win}}</td>
+                <td>{{team.loss}}</td>
+                <td>{{team.tie}}</td>
+                <td>{{team.points}}</td>
+            </tr>
+        {% endfor %}
     </table>
+</div>
+<div>
+    <form method = "POST" action = {% url 'standings' %}>
+        <button type = "submit" class = "advance-week">Advance Week</button>
+        {% csrf_token %}
+        {{ form.as_p }}
+    </form>
 </div>
 
 {% endblock %}

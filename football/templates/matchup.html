@@ -18,36 +18,36 @@
     <table id = "score-table" style = "border: 1px solid black">
         <tr>
             <th>{{all_matchups.t1}}'s Team</th>
-            <th>Score</th>
+            <th>{{total.t1}}</th>
             <th>Pos</th>
             <th>{{all_matchups.t2}}'s Team</th>
-            <th>Score</th>
+            <th>{{total.t2}}</th>
         </tr>
         <tr>
-            <td>{{user_stats.qb.name}}</td>
-            <td>{{user_stats.qb.points}}</td>
+            <td>{{all_stats.t1.qb.name}}</td>
+            <td>{{all_stats.t1.qb.points}}</td>
             <td>QB</td>
-            <td>{{t2_stats.qb.name}}</td>
-            <td>{{t2_stats.qb.points}}</td>
+            <td>{{all_stats.t2.qb.name}}</td>
+            <td>{{all_stats.t2.qb.points}}</td>
         </tr>
         <tr>
-            <td>{{user_stats.rb.name}}</td>
-            <td>{{user_stats.rb.points}}</td>
+            <td>{{all_stats.t1.rb.name}}</td>
+            <td>{{all_stats.t1.rb.points}}</td>
             <td>RB</td>
-            <td>{{t2_stats.rb.name}}</td>
-            <td>{{t2_stats.rb.points}}</td>
+            <td>{{all_stats.t2.rb.name}}</td>
+            <td>{{all_stats.t2.rb.points}}</td>
         </tr>
         <tr>
-            <td>{{user_stats.wr.name}}</td>
-            <td>{{user_stats.wr.points}}</td>
+            <td>{{all_stats.t1.wr.name}}</td>
+            <td>{{all_stats.t1.wr.points}}</td>
             <td>WR</td>
-            <td>{{t2_stats.wr.name}}</td>
-            <td>{{t2_stats.wr.points}}</td>
+            <td>{{all_stats.t2.wr.name}}</td>
+            <td>{{all_stats.t2.wr.points}}</td>
         </tr>
     </table>
 </div>
 <div class = "my-team-container">
-    <h2>My Team</h2>
+    <h2>{{all_matchups.t1}}'s Team</h2>
     <table>
         <tr>
             <th>Position</th>
@@ -63,48 +63,48 @@
             <th>Fumbles Lost</th>
         </tr>
         <tr>
-            <td>{{user_stats.qb.position}}</td>
-            <td>{{user_stats.qb.name}}</td>
-            <td>{{user_stats.qb.points}}</td>
-            <td>{{user_stats.qb.pass_yds}}</td>
-            <td>{{user_stats.qb.pass_tds}}</td>
-            <td>{{user_stats.qb.rush_yds}}</td>
-            <td>{{user_stats.qb.rush_tds}}</td>
-            <td>{{user_stats.qb.rec_yds}}</td>
-            <td>{{user_stats.qb.rec_tds}}</td>
-            <td>{{user_stats.qb.interceptions}}</td>
-            <td>{{user_stats.qb.fumbles}}</td>
+            <td>{{all_stats.t1.qb.position}}</td>
+            <td>{{all_stats.t1.qb.name}}</td>
+            <td>{{all_stats.t1.qb.points}}</td>
+            <td>{{all_stats.t1.qb.pass_yds}}</td>
+            <td>{{all_stats.t1.qb.pass_tds}}</td>
+            <td>{{all_stats.t1.qb.rush_yds}}</td>
+            <td>{{all_stats.t1.qb.rush_tds}}</td>
+            <td>{{all_stats.t1.qb.rec_yds}}</td>
+            <td>{{all_stats.t1.qb.rec_tds}}</td>
+            <td>{{all_stats.t1.qb.interceptions}}</td>
+            <td>{{all_stats.t1.qb.fumbles}}</td>
         </tr>
         <tr>
-            <td>{{user_stats.rb.position}}</td>
-            <td>{{user_stats.rb.name}}</td>
-            <td>{{user_stats.rb.points}}</td>
-            <td>{{user_stats.rb.pass_yds}}</td>
-            <td>{{user_stats.rb.pass_tds}}</td>
-            <td>{{user_stats.rb.rush_yds}}</td>
-            <td>{{user_stats.rb.rush_tds}}</td>
-            <td>{{user_stats.rb.rec_yds}}</td>
-            <td>{{user_stats.rb.rec_tds}}</td>
-            <td>{{user_stats.rb.interceptions}}</td>
-            <td>{{user_stats.rb.fumbles}}</td>
+            <td>{{all_stats.t1.rb.position}}</td>
+            <td>{{all_stats.t1.rb.name}}</td>
+            <td>{{all_stats.t1.rb.points}}</td>
+            <td>{{all_stats.t1.rb.pass_yds}}</td>
+            <td>{{all_stats.t1.rb.pass_tds}}</td>
+            <td>{{all_stats.t1.rb.rush_yds}}</td>
+            <td>{{all_stats.t1.rb.rush_tds}}</td>
+            <td>{{all_stats.t1.rb.rec_yds}}</td>
+            <td>{{all_stats.t1.rb.rec_tds}}</td>
+            <td>{{all_stats.t1.rb.interceptions}}</td>
+            <td>{{all_stats.t1.rb.fumbles}}</td>
         </tr>
         <tr>
-            <td>{{user_stats.wr.position}}</td>
-            <td>{{user_stats.wr.name}}</td>
-            <td>{{user_stats.wr.points}}</td>
-            <td>{{user_stats.wr.pass_yds}}</td>
-            <td>{{user_stats.wr.pass_tds}}</td>
-            <td>{{user_stats.wr.rush_yds}}</td>
-            <td>{{user_stats.wr.rush_tds}}</td>
-            <td>{{user_stats.wr.rec_yds}}</td>
-            <td>{{user_stats.wr.rec_tds}}</td>
-            <td>{{user_stats.wr.interceptions}}</td>
-            <td>{{user_stats.wr.fumbles}}</td>
+            <td>{{all_stats.t1.wr.position}}</td>
+            <td>{{all_stats.t1.wr.name}}</td>
+            <td>{{all_stats.t1.wr.points}}</td>
+            <td>{{all_stats.t1.wr.pass_yds}}</td>
+            <td>{{all_stats.t1.wr.pass_tds}}</td>
+            <td>{{all_stats.t1.wr.rush_yds}}</td>
+            <td>{{all_stats.t1.wr.rush_tds}}</td>
+            <td>{{all_stats.t1.wr.rec_yds}}</td>
+            <td>{{all_stats.t1.wr.rec_tds}}</td>
+            <td>{{all_stats.t1.wr.interceptions}}</td>
+            <td>{{all_stats.t1.wr.fumbles}}</td>
         </tr>
     </table>
 <div>
 <div class = "my-team-container">
-    <h2>Opposing Team</h2>
+    <h2>{{all_matchups.t2}}'s Team</h2>
     <table>
         <tr>
             <th>Position</th>
@@ -120,50 +120,44 @@
             <th>Fumbles Lost</th>
         </tr>
         <tr>
-            <td>{{t2_stats.qb.position}}</td>
-            <td>{{t2_stats.qb.name}}</td>
-            <td>{{t2_stats.qb.points}}</td>
-            <td>{{t2_stats.qb.pass_yds}}</td>
-            <td>{{t2_stats.qb.pass_tds}}</td>
-            <td>{{t2_stats.qb.rush_yds}}</td>
-            <td>{{t2_stats.qb.rush_tds}}</td>
-            <td>{{t2_stats.qb.rec_yds}}</td>
-            <td>{{t2_stats.qb.rec_tds}}</td>
-            <td>{{t2_stats.qb.interceptions}}</td>
-            <td>{{t2_stats.qb.fumbles}}</td>
+            <td>{{all_stats.t2.qb.position}}</td>
+            <td>{{all_stats.t2.qb.name}}</td>
+            <td>{{all_stats.t2.qb.points}}</td>
+            <td>{{all_stats.t2.qb.pass_yds}}</td>
+            <td>{{all_stats.t2.qb.pass_tds}}</td>
+            <td>{{all_stats.t2.qb.rush_yds}}</td>
+            <td>{{all_stats.t2.qb.rush_tds}}</td>
+            <td>{{all_stats.t2.qb.rec_yds}}</td>
+            <td>{{all_stats.t2.qb.rec_tds}}</td>
+            <td>{{all_stats.t2.qb.interceptions}}</td>
+            <td>{{all_stats.t2.qb.fumbles}}</td>
         </tr>
         <tr>
-            <td>{{t2_stats.rb.position}}</td>
-            <td>{{t2_stats.rb.name}}</td>
-            <td>{{t2_stats.rb.points}}</td>
-            <td>{{t2_stats.rb.pass_yds}}</td>
-            <td>{{t2_stats.rb.pass_tds}}</td>
-            <td>{{t2_stats.rb.rush_yds}}</td>
-            <td>{{t2_stats.rb.rush_tds}}</td>
-            <td>{{t2_stats.rb.rec_yds}}</td>
-            <td>{{t2_stats.rb.rec_tds}}</td>
-            <td>{{t2_stats.rb.interceptions}}</td>
-            <td>{{t2_stats.rb.fumbles}}</td>
+            <td>{{all_stats.t2.rb.position}}</td>
+            <td>{{all_stats.t2.rb.name}}</td>
+            <td>{{all_stats.t2.rb.points}}</td>
+            <td>{{all_stats.t2.rb.pass_yds}}</td>
+            <td>{{all_stats.t2.rb.pass_tds}}</td>
+            <td>{{all_stats.t2.rb.rush_yds}}</td>
+            <td>{{all_stats.t2.rb.rush_tds}}</td>
+            <td>{{all_stats.t2.rb.rec_yds}}</td>
+            <td>{{all_stats.t2.rb.rec_tds}}</td>
+            <td>{{all_stats.t2.rb.interceptions}}</td>
+            <td>{{all_stats.t2.rb.fumbles}}</td>
         </tr>
         <tr>
-            <td>{{t2_stats.wr.position}}</td>
-            <td>{{t2_stats.wr.name}}</td>
-            <td>{{t2_stats.wr.points}}</td>
-            <td>{{t2_stats.wr.pass_yds}}</td>
-            <td>{{t2_stats.wr.pass_tds}}</td>
-            <td>{{t2_stats.wr.rush_yds}}</td>
-            <td>{{t2_stats.wr.rush_tds}}</td>
-            <td>{{t2_stats.wr.rec_yds}}</td>
-            <td>{{t2_stats.wr.rec_tds}}</td>
-            <td>{{t2_stats.wr.interceptions}}</td>
-            <td>{{t2_stats.wr.fumbles}}</td>
+            <td>{{all_stats.t2.wr.position}}</td>
+            <td>{{all_stats.t2.wr.name}}</td>
+            <td>{{all_stats.t2.wr.points}}</td>
+            <td>{{all_stats.t2.wr.pass_yds}}</td>
+            <td>{{all_stats.t2.wr.pass_tds}}</td>
+            <td>{{all_stats.t2.wr.rush_yds}}</td>
+            <td>{{all_stats.t2.wr.rush_tds}}</td>
+            <td>{{all_stats.t2.wr.rec_yds}}</td>
+            <td>{{all_stats.t2.wr.rec_tds}}</td>
+            <td>{{all_stats.t2.wr.interceptions}}</td>
+            <td>{{all_stats.t2.wr.fumbles}}</td>
         </tr>
     </table>
-<div>
-    <form>
-        <button type = "submit" method = "POST">Advance Week</button>
-        {% csrf_token %}
-        {{ form.as_p }}
-    </form>
-</div>
+
 {% endblock %}

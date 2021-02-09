@@ -7,7 +7,7 @@ class Command(BaseCommand):
         for player in players:
             for num in range(1, 6):
                 try:
-                    player_stats = Week.objects.filter(
+                    player_stats = Week.objects.get(
                         name = player.name,
                         week = num
                         )

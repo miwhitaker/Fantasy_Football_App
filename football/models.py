@@ -47,3 +47,12 @@ class Week(models.Model):
     rec_yds = models.DecimalField(max_digits = 6, decimal_places = 2)
     rec_tds = models.IntegerField()
     points = models.DecimalField(max_digits = 6, decimal_places = 2)
+
+
+class Record(models.Model):
+    week = models.IntegerField()
+    username = models.CharField(max_length = 100)
+    win = models.IntegerField()
+    loss = models.IntegerField()
+    tie = models.IntegerField()
+    points = models.DecimalField(max_digits = 6, decimal_places = 2)
