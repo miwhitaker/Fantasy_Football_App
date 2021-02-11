@@ -6,12 +6,14 @@
 {% endblock %}
 
 {% block content %}
-<div class = "row page">
+<div class = "row page" >
     <div class = "col-md-3 col-sm-12">
         <div class = "my-team">
             <table>
                 <tr>
                     <th>My Team</th>
+                    <th>Position</th>
+                    <th>Team</th>
                 </tr>
                 <tr>
                     <td>QB</td>
@@ -40,13 +42,26 @@
                         {{my_wr.team}}
                     </td>
                 </tr>
-                <tr>
-                    <td>Bench</td>
-                    <td>
-                        ---
-                    </td>
-                </tr>
             </table>
+        </div>
+        <div class = "messages">
+            <span class = "message-header">Draft History</span>
+            {% if messages %}
+                <ul class="message-details">
+                    {% for message in messages %}
+                        {% if message.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}
+                        <li{% if message.tags %} class="{{ message.tags }}"
+                            {% endif %}>
+                            {{ message }}
+                        </li>
+                        {% elif message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
+                        <li style = "color: red">
+                            {{message}}
+                        </li>
+                        {% endif %}
+                    {% endfor %}
+                </ul>
+            {% endif %}
         </div>
     </div>
     <div class = "col-md-6 cold-sm-12">
@@ -72,7 +87,7 @@
         </div>
         <div class = "draft-list-container">
             <table>
-                <tr>
+                <tr class = "list-header">
                     <th>Player Name</th>
                     <th>Team</th>
                     <th>Position</th>
@@ -94,20 +109,21 @@
     <div class = "col-md-3 col-sm-12">
         <div class = "draft-order">
             <h2>Draft Order</h2>
-                <ol id = "draftOrder">
-                {% for user in draft_list %}
-                    <li>{{user}}</li>
-                {% endfor %}
-                </ol>
+            <ol id = "draftOrder">
+            {% for user in draft_list %}
+                <li>{{user}}</li>
+            {% endfor %}
+            </ol>
         </div>
-    </div>
-    <div class = "button-container">
+        <div class = "button-container">
         <form method = "POST"  action = {% url 'standings' %}>
             <button type = "submit" class = "finalize-button">Finalize Draft</button>
             {% csrf_token %}
             {{ form.as_p }}
         </form>
     </div>
+    </div>
+
 </div>
 
 

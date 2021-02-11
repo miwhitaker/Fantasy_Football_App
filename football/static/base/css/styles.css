@@ -3,78 +3,118 @@
     margin-top: 10px;
     margin-left: auto;
     margin-right: auto;
-    padding: 5px;
 }
 
 #header {
     text-align: center;
+    height: 60px;
+    margin-bottom: 0;
+    background-color: black;
+    color:goldenrod;
 }
 
 .my-team {
     border: 3px solid black;
     width: 100%;
+    background-color: azure;
+    box-shadow: 10px 5px 5px black;
 }
 
-.player-conainer {
+.player-info-container, .draft-order {
     border: 3px solid black;
-}
-
-.player-info-container {
-    border: 3px solid black;
-}
-
-.draft-order {
-    border: 3px solid black;
+    background-color: azure;
+    box-shadow: 10px 5px 5px black;
 }
 
 .player-info-container {
     display: flex;
     justify-content: space-between;
+    padding-left: 3px;
+    background-color: azure;
+}
+
+.messages {
+    border: 3px solid black;
+    height: 365px;
+    margin-top: 10px;
+    background-color: azure;
+    overflow: hidden;
+    overflow-y: scroll;
+    box-shadow: 10px 5px 5px black;
+}
+
+.message-header {
+    font-weight: 700;
+    padding-left: 5px;
+    text-decoration: underline;
+    background-color: azure;
+}
+
+.message-details {
+    list-style-type: square;
 }
 
 .draft-list-container {
     border: 3px solid black;
-}
-
-.matchup-container {
-    width: 50%;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-.my-team-container {
-    padding-left: 10px;
-    padding-right: 10px;
+    height: 380px;
+    overflow: hidden;
+    overflow-y: scroll;
+    margin-top: 10px;
+    background-color: azure;
+    box-shadow: 10px 5px 5px black;
 }
 
 table {
     border: 1px solid black;
     width: 100%;
     text-align: center;
-
-}
-
-.draft-header {
-    display: flex;
-    justify-content: space-between;
-    font-weight: bold;
 }
 
 tr:nth-child(even) {
-    background-color: #7ae43c;
+    background-color: #CCCCCC;
   }
 
 /***Matchup Page styles***/
 
+.matchup-container {
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: azure;
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    box-shadow: 10px 5px 5px black;
+}
+
+.my-team-container {
+    padding: 15px 10px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 20px;
+    width: 95%;
+    background-color: azure;
+    box-shadow: 10px 5px 5px black;
+}
+
 tr, td {
     border: 1px solid black;
+    opacity: 1;
     
 }
 
 #score-table {
-    
     border: 1px solid black;
   }
+
+.team-label {
+    font-size: 1.2rem;
+}
+
+.point-label {
+    font-size: 1.2rem;
+    color: red;
+}
 
 /***Button styles***/
 .draft-button {
@@ -84,7 +124,28 @@ tr, td {
     margin-right: 3px;
 }
 
-/***All page styles***/
-ul {
-    list-style-type: none;
+.finalize-button, .advance-week {
+    background-color:blue;
+    color: whitesmoke;
+    margin-top: 3px;
+    margin-right: 3px;
+    box-shadow: 10px 5px 5px black;
+}
+
+.adv-button-container {
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/***Standings page styles***/
+.matchup-table, .standings-table {
+    width: 50%;
+    background-color: azure;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    text-align: center;
+    box-shadow: 10px 5px 5px black;
 }

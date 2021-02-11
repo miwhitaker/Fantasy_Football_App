@@ -15,7 +15,7 @@ def fantasy(request):
 def lobby(request):
     if not request.user.is_authenticated:
         return (redirect('django.contrib.auth.views.login'))
-    draft_list = [request.user.username, 'FootballAce', 'BotArmy', 'JSguru', 'ThePythons', 'HTMLwhiz']
+    draft_list = [request.user.username, 'Emerald', 'LinearJS', 'JavasCrypt', 'Anaconda', 'HTMLdude']
     context = {
         'draft_list': draft_list,
     }
@@ -23,7 +23,7 @@ def lobby(request):
     return render(request, 'lobby.html')
 
 ### This is the homepage for a new fantasy football draft. Users have to be logged in for the app to work,
-### so I have a redirect if they are not logged in. The draft list is managed by function call lower on page
+### so I have a redirect if they are not logged in. The draft list is managed by get_draft_list
 
 def draft(request):
     if not request.user.is_authenticated:
@@ -37,19 +37,22 @@ def draft(request):
     if request.method == "POST":
         form = DraftForm(request.POST)
         if form.is_valid():
-            if draft_list[0] == request.user.username: 
+            if not draft_list:
+                messages.add_message(request, messages.ERROR, f"The draft is complete")
+            elif draft_list[0] == request.user.username: 
                 drafted = Players.objects.get(pk = form.cleaned_data['player_id'])
                 if check_player_list(drafted, request.user.username):
                     drafted.rostered_by = request.user.username
                     drafted.save()
                     draft_list = get_draft_list(request.user.username, True)
-                    messages.add_message(request, messages.SUCCESS, f"You just drafted {drafted.name}")
+                    messages.add_message(request, messages.SUCCESS, f"{request.user.username} has drafted {drafted.name}")
                     draft_list = cpu_draft(request, draft_list)
                 else:
                     messages.add_message(request, messages.ERROR, f"You already have a {drafted.position}")
             else:
-                messages.add_message(request, messages.ERROR, f"It is not your turn to draft. It is {draft_list[0]}'s turn") 
+                messages.add_message(request, messages.ERROR, f"It is not your turn to draft.") 
 
+### The function: get_my_players retrieves the user's players from the database
     my_players = get_my_players(request.user.username)
     my_qb = my_players['qb']
     my_rb = my_players['rb']
@@ -65,7 +68,6 @@ def draft(request):
         }
     
     return render(request, 'draft.html', context)
-
 
 def standings(request):
     if not request.user.is_authenticated:
@@ -122,6 +124,7 @@ def standings(request):
 ### This controls the win/loss records for all users. This is posted to the Record database. It also moves forward to
 ### the next week when the "advance" button is clicked. The first time through, it creates a DB record for each user.
     if request.method == "POST":
+        week = get_week()
         if week == 5:
             pass
         else:
@@ -144,7 +147,6 @@ def standings(request):
                                    points = 0,
                                    )
                     records.save()
-
             check_winner(total['t1'], total['t2'], all_matchups_dict['t1'], all_matchups_dict['t2'])
             check_winner(total['t3'], total['t4'], all_matchups_dict['t3'], all_matchups_dict['t4'])
             check_winner(total['t5'], total['t6'], all_matchups_dict['t5'], all_matchups_dict['t6'])
@@ -157,6 +159,7 @@ def standings(request):
         'all_matchups': all_matchups_dict,
         'all_stats': all_stats,
         'all_records': all_records,
+        'week': week
     }
     return render(request, 'standings.html', context)
 
@@ -218,6 +221,7 @@ def matchup(request):
         'total': total,
         'all_matchups': all_matchups_dict,
         'all_stats': all_stats,
+        'week': week
     }
 
     return render(request, 'matchup.html', context)
@@ -272,18 +276,21 @@ def cpu_draft(request, draft_list):
             player = Players.objects.filter(rostered_by = '0', position = 'QB').order_by('-points').first()
             player.rostered_by = user
             player.save()
+            messages.add_message(request, messages.SUCCESS, f"{user} has drafted {player.name}")
             draft_list = get_draft_list(user, True)
         
         elif cpu_players['rb'] == '0':
             player = Players.objects.filter(rostered_by = '0', position = 'RB').order_by('-points').first() 
             player.rostered_by = user
             player.save()
+            messages.add_message(request, messages.SUCCESS, f"{user} has drafted {player.name}")
             draft_list = get_draft_list(user, True)
 
         elif cpu_players['wr'] == '0':
             player = Players.objects.filter(rostered_by = '0', position = 'WR').order_by('-points').first()
             player.rostered_by = user
             player.save()
+            messages.add_message(request, messages.SUCCESS, f"{user} has drafted {player.name}")
             draft_list = get_draft_list(user, True)
 
     return draft_list
@@ -353,13 +360,13 @@ def get_all_matchups(user_list):
 ### This controls the current week. It defaults to week one until user advances to the next week
 def get_week(next_week = False):
     curr_week = cache.get('current_week', 1)
-    if next_week and curr_week <= 5:
+    if next_week and curr_week < 5:
         curr_week += 1
     cache.set('current_week', curr_week, ONLINE_THRESHOLD)
     return curr_week
 
-### This checks the numbers that are sent in for two teams (total1 and total2) to see who wins. This needs to be called
-### 3 times per week as there are 3 matchups per week. Results saved in Record DB
+### This checks the numbers that are sent in for two teams (total1 and total2) to see who wins (u1 or u2). This needs to 
+### be called 3 times per week as there are 3 matchups per week. Results saved in Record DB
 def check_winner(total1, total2, u1, u2):
     week = get_week()
     records_u1 = Record.objects.get(week = week, username = u1)

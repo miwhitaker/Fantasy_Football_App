@@ -15,34 +15,35 @@
 
 {% block content %}
 <div class = "matchup-container">
-    <table id = "score-table" style = "border: 1px solid black">
+    <h2>Week {{week}}</h2>
+    <table id = "score-table">
         <tr>
-            <th>{{all_matchups.t1}}'s Team</th>
-            <th>{{total.t1}}</th>
-            <th>Pos</th>
-            <th>{{all_matchups.t2}}'s Team</th>
-            <th>{{total.t2}}</th>
+            <th class = "team-label">{{all_matchups.t1}}'s Team</th>
+            <th class = "point-label">{{total.t1}}</th>
+            <th>---</th>
+            <th class = "point-label">{{total.t2}}</th>
+            <th class = "team-label">{{all_matchups.t2}}'s Team</th>
         </tr>
         <tr>
             <td>{{all_stats.t1.qb.name}}</td>
             <td>{{all_stats.t1.qb.points}}</td>
             <td>QB</td>
-            <td>{{all_stats.t2.qb.name}}</td>
             <td>{{all_stats.t2.qb.points}}</td>
+            <td>{{all_stats.t2.qb.name}}</td>
         </tr>
         <tr>
             <td>{{all_stats.t1.rb.name}}</td>
             <td>{{all_stats.t1.rb.points}}</td>
             <td>RB</td>
-            <td>{{all_stats.t2.rb.name}}</td>
             <td>{{all_stats.t2.rb.points}}</td>
+            <td>{{all_stats.t2.rb.name}}</td>
         </tr>
         <tr>
             <td>{{all_stats.t1.wr.name}}</td>
             <td>{{all_stats.t1.wr.points}}</td>
             <td>WR</td>
-            <td>{{all_stats.t2.wr.name}}</td>
             <td>{{all_stats.t2.wr.points}}</td>
+            <td>{{all_stats.t2.wr.name}}</td>
         </tr>
     </table>
 </div>
@@ -102,7 +103,7 @@
             <td>{{all_stats.t1.wr.fumbles}}</td>
         </tr>
     </table>
-<div>
+</div>
 <div class = "my-team-container">
     <h2>{{all_matchups.t2}}'s Team</h2>
     <table>
@@ -159,5 +160,5 @@
             <td>{{all_stats.t2.wr.fumbles}}</td>
         </tr>
     </table>
-
+</div>
 {% endblock %}

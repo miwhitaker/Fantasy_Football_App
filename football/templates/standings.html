@@ -14,8 +14,8 @@
 {% endblock %}
 
 {% block content %}
-
-<div>
+<div class = "col-md-12 matchup-table">
+    <h3>Week {{week}} Matchups</h3>
     <table>
         <tr>
             <th>Team</th>
@@ -41,8 +41,10 @@
             <td>{{total.t6}}</td>
             <td>{{all_matchups.t6}}'s Team</td>
         </tr>
+    </table>
 </div>
-<div class = "col-md-12 col-sm-12">
+<div class = "col-md-12 standings-table">
+    <h3>Standings</h3>
     <table>
         <tr>
             <th>Team</th>
@@ -62,12 +64,11 @@
         {% endfor %}
     </table>
 </div>
-<div>
+<div class = "adv-button-container">
     <form method = "POST" action = {% url 'standings' %}>
         <button type = "submit" class = "advance-week">Advance Week</button>
         {% csrf_token %}
         {{ form.as_p }}
     </form>
 </div>
-
 {% endblock %}
