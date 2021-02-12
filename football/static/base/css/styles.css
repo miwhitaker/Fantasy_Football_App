@@ -132,10 +132,28 @@ tr, td {
     box-shadow: 10px 5px 5px black;
 }
 
+.reset {
+    background-color:red;
+    color: whitesmoke;
+    margin-top: 3px;
+    margin-right: 3px;
+    box-shadow: 10px 5px 5px black;
+}
+
 .adv-button-container {
+    display: flex;
     width: 50%;
     margin-left: auto;
     margin-right: auto;
+    justify-content: space-between;
+}
+
+.adv-button-matchup {
+    display: flex;
+    width: 95%;
+    margin-left: auto;
+    margin-right: auto;
+    justify-content: space-between;
 }
 
 /***Standings page styles***/

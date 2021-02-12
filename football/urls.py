@@ -9,4 +9,5 @@ urlpatterns = [
     path('standings', views.standings, name = 'standings'),
     path('matchup', views.matchup, name = 'matchup'),
     path('lobby', views.lobby, name = "lobby"),
+    path('accounts/profile', views.draft, name = 'draft'),
 ]

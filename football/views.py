@@ -6,6 +6,7 @@ from .teams import team_names
 from django.views.decorators.csrf import csrf_protect
 from django.core.cache import cache
 from django.conf import settings
+from django.contrib.auth.views import auth_login
 
 ONLINE_THRESHOLD = getattr(settings, 'ONLINE_THRESHOLD', 60 * 90)
 
@@ -27,14 +28,22 @@ def lobby(request):
 
 def draft(request):
     if not request.user.is_authenticated:
-        return (redirect('django.contrib.auth.views.login'))
+        return (redirect('auth_login'))
     players = Players.objects.all().order_by('-points')
     draft_list = get_draft_list(request.user.username)
+    if request.method == "POST" and 'reset' in request.POST:
+        all_players = Players.objects.all()
+        
+        for player in all_players:
+            player.rostered_by = '0'
+            player.save()
+
+        Record.objects.all().delete()
     
 ### This is what happens when user drafts a player - we make sure it is their turn on line 40 and that you have
 ### space on your roster for the player on line 42. Then this is saved and the draft list is updated in the function
 ### get_draft_list. After a user picks a player, their name is removed from the draft list (from top of list)
-    if request.method == "POST":
+    if request.method == "POST" and 'draft' in request.POST:
         form = DraftForm(request.POST)
         if form.is_valid():
             if not draft_list:
@@ -71,7 +80,7 @@ def draft(request):
 
 def standings(request):
     if not request.user.is_authenticated:
-        return (redirect('django.contrib.auth.views.login'))
+        return (redirect('auth_login'))
     week = get_week()
     user_list = [
                 request.user.username,
@@ -125,9 +134,7 @@ def standings(request):
 ### the next week when the "advance" button is clicked. The first time through, it creates a DB record for each user.
     if request.method == "POST":
         week = get_week()
-        if week == 5:
-            pass
-        else:
+        if week < 5:
             increment_week = True
             for user in all_matchups['wk' + str(week)]:
                 try:
@@ -150,6 +157,8 @@ def standings(request):
             check_winner(total['t1'], total['t2'], all_matchups_dict['t1'], all_matchups_dict['t2'])
             check_winner(total['t3'], total['t4'], all_matchups_dict['t3'], all_matchups_dict['t4'])
             check_winner(total['t5'], total['t6'], all_matchups_dict['t5'], all_matchups_dict['t6'])
+        else:
+            pass
 
     all_records = Record.objects.filter(week = week).order_by('-win')
 
@@ -165,7 +174,7 @@ def standings(request):
 
 def matchup(request):
     if not request.user.is_authenticated:
-        return (redirect('django.contrib.auth.views.login'))
+        return (redirect('auth_login'))
     week = get_week()
     user_list = [
                 request.user.username,

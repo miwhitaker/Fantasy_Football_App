@@ -14,6 +14,7 @@
 {% endblock %}
 
 {% block content %}
+
 <div class = "col-md-12 matchup-table">
     <h3>Week {{week}} Matchups</h3>
     <table>
@@ -70,5 +71,11 @@
         {% csrf_token %}
         {{ form.as_p }}
     </form>
+    <form method = "POST" action = {% url 'draft' %}>
+        <button type = "submit" class = "reset" name = "reset">Reset Draft</button>
+        {% csrf_token %}
+        {{ form.as_p }}
+    </form>
 </div>
+
 {% endblock %}
