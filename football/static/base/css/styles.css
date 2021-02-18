@@ -124,7 +124,7 @@ tr, td {
     margin-right: 3px;
 }
 
-.finalize-button, .advance-week {
+#finalize-button, .advance-week {
     background-color:blue;
     color: whitesmoke;
     margin-top: 3px;
@@ -166,4 +166,11 @@ tr, td {
     margin-bottom: 20px;
     text-align: center;
     box-shadow: 10px 5px 5px black;
+}
+
+.winner {
+    color: red;
+    font-size: 1.2rem;
+    background-color: rgba(240, 255, 255, 0.5)
+
 }

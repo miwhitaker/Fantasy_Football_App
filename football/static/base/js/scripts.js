@@ -31,3 +31,13 @@ function playerClick(playerStr) {
     return false
 }
 
+$(document).ready(function() {
+    const listItems = [];
+    $('#draftOrder > li').each(function(item){
+        listItems.push(item)
+    });
+    if(listItems.length === 0) {
+        const button = document.getElementById("finalize-button");
+        button.disabled = false;
+    }
+})

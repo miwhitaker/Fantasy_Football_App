@@ -13,6 +13,8 @@ ONLINE_THRESHOLD = getattr(settings, 'ONLINE_THRESHOLD', 60 * 90)
 def fantasy(request):
     return render(request, 'base.html')
 
+
+
 def lobby(request):
     if not request.user.is_authenticated:
         return (redirect('django.contrib.auth.views.login'))
@@ -23,23 +25,22 @@ def lobby(request):
 
     return render(request, 'lobby.html')
 
+
+
 ### This is the homepage for a new fantasy football draft. Users have to be logged in for the app to work,
 ### so I have a redirect if they are not logged in. The draft list is managed by get_draft_list
-
 def draft(request):
     if not request.user.is_authenticated:
         return (redirect('auth_login'))
     players = Players.objects.all().order_by('-points')
-    draft_list = get_draft_list(request.user.username)
     if request.method == "POST" and 'reset' in request.POST:
         all_players = Players.objects.all()
-        
         for player in all_players:
             player.rostered_by = '0'
             player.save()
-
         Record.objects.all().delete()
-    
+        cache.clear()
+    draft_list = get_draft_list(request.user.username)
 ### This is what happens when user drafts a player - we make sure it is their turn on line 40 and that you have
 ### space on your roster for the player on line 42. Then this is saved and the draft list is updated in the function
 ### get_draft_list. After a user picks a player, their name is removed from the draft list (from top of list)
@@ -77,6 +78,8 @@ def draft(request):
         }
     
     return render(request, 'draft.html', context)
+
+
 
 def standings(request):
     if not request.user.is_authenticated:
@@ -168,9 +171,12 @@ def standings(request):
         'all_matchups': all_matchups_dict,
         'all_stats': all_stats,
         'all_records': all_records,
-        'week': week
+        'week': week,
+        'winner': all_records[0],
     }
     return render(request, 'standings.html', context)
+
+
 
 def matchup(request):
     if not request.user.is_authenticated:
@@ -235,6 +241,8 @@ def matchup(request):
 
     return render(request, 'matchup.html', context)
 
+
+
 ### This populates a list of all NFL players the user has drafted up to this point -- it calls the Players database
 def get_my_players(user):
     try: 
@@ -254,6 +262,8 @@ def get_my_players(user):
                 'wr': my_wr}
     return my_players
 
+
+
 ### This is a check to make sure you only have 1 player for each position - true means you can draft the player
 def check_player_list(plyr, user):
     my_players = get_my_players(user)
@@ -262,6 +272,8 @@ def check_player_list(plyr, user):
         return True
     else:
         return False
+
+
 
 ### This manages the draft list, it removes the user who just chose a player and returns the remaining list. The first
 ### time through, it just returns the original list
@@ -272,6 +284,8 @@ def get_draft_list(user, next_user = False):
         draft_list.pop(0)
     cache.set('draft_list', draft_list, ONLINE_THRESHOLD)
     return draft_list
+
+
 
 ### This handles the cpu draft selection. It tells them to choose the player at the top of the list for each position.
 ### The CPU checks each position to see if it has a player - if not, pick one at that position from the top of the list
@@ -304,6 +318,8 @@ def cpu_draft(request, draft_list):
 
     return draft_list
 
+
+
 ### This function collects stats for an individual user for a specific week. It calls the get_my_players function 
 ### to get list of user's player names and position, then matches those up with the stats stored in the 'Week' DB
 def get_team_stats(user, week):
@@ -330,6 +346,8 @@ def get_team_stats(user, week):
                 }
 
     return user_stats
+
+
 
 ### This is just the dictionary for which teams are playing against each other each week
 def get_all_matchups(user_list):
@@ -366,6 +384,8 @@ def get_all_matchups(user_list):
                     }
     return all_matchups
 
+
+
 ### This controls the current week. It defaults to week one until user advances to the next week
 def get_week(next_week = False):
     curr_week = cache.get('current_week', 1)
@@ -373,6 +393,8 @@ def get_week(next_week = False):
         curr_week += 1
     cache.set('current_week', curr_week, ONLINE_THRESHOLD)
     return curr_week
+
+
 
 ### This checks the numbers that are sent in for two teams (total1 and total2) to see who wins (u1 or u2). This needs to 
 ### be called 3 times per week as there are 3 matchups per week. Results saved in Record DB

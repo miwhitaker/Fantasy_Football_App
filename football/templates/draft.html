@@ -117,7 +117,7 @@
         </div>
         <div class = "button-container">
         <form method = "POST"  action = {% url 'standings' %}>
-            <button type = "submit" class = "finalize-button">Finalize Draft</button>
+            <button type = "submit" disabled = "true" id = "finalize-button">Finalize Draft</button>
             {% csrf_token %}
             {{ form.as_p }}
         </form>
